@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery</title>
+	<style>
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		table {
+			border-spacing: 0;
+			margin: 20px 0;
+		}
+
+		th,
+		td {
+			box-sizing: border-box;
+			padding: 20px;
+			background-color: #ddd;
+			text-align: center;
+		}
+
+		td:nth-last-of-type(odd) {
+			background-color: #ccc;
+		}
+
+		td:nth-last-of-type(even) {
+			background-color: #eee;
+		}
+	</style>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'
+		integrity='sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=='
+		crossorigin='anonymous'></script>
+	<script>
+		$(function () {
+			let species = document.querySelectorAll('.title');
+			for (let i = 0; i < species.length; i++) {
+				$('#myTable ').append(`<tr class=${species[i].innerHTML}><th>${species[i].innerHTML}</th></tr>`)
+			}
+			$('.food').click(function () {
+				let item = $(this).text();
+				let parentName = $(this).parent().prop('className');
+				switch (parentName) {
+					case 'condiments':
+						$('#myTable tr:nth-of-type(1)').append(`<td>${item}</td>`);
+						break;
+					case 'deli':
+						$('#myTable tr:nth-of-type(2)').append(`<td>${item}</td>`);
+						break;
+					case 'coffee-and-tea':
+						$('#myTable tr:nth-of-type(3)').append(`<td>${item}</td>`);
+						break;
+					default:
+						$('#myTable tr:nth-of-type(4)').append(`<td>${item}</td>`);
+						break;
+				}
+				$('#myList').append(`<li>${item}</li>`);
+				$('#mySelect').append(`<option>${item}</option>`);
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<h3 class="title">Condiments(調味料類)</h3>
+	<p class="condiments">
+		<button class="food">mustard</button>
+		<button class="food">salt</button>
+		<button class="food">pepper</button>
+		<button class="food">spices</button>
+		<button class="food">soy sauce</button>
+		<button class="food">ketchup</button>
+	</p>
+	<h3 class="title">Deli(熟食類)</h3>
+	<p class="deli">
+		<button class="food">roast beef</button>
+		<button class="food">turkey</button>
+		<button class="food">Swiss cheese</button>
+		<button class="food">potato salad</button>
+		<button class="food">potato Diane</button>
+	</p>
+
+	<h3 class="title">Coffee and Tea(咖啡茶飲類)</h3>
+	<p class="coffee-and-tea">
+		<button class="food">coffee</button>
+		<button class="food">herbal tea</button>
+		<button class="food">hot chocolate</button>
+		<button class="food">latte</button>
+		<button class="food">cafe au lait </button>
+		<button class="food">Con Panna</button>
+	</p>
+	<h3 class="title">Bread(麵包類)</h3>
+	<p class="bread">
+		<button class="food">white bread</button>
+		<button class="food">wheat bread</button>
+		<button class="food">whole grain bread</button>
+		<button class="food">rye bread</button>
+		<button class="food">pretzel</button>
+		<button class="food">pita bread</button>
+	</p>
+	<hr>
+	<h2>Your choices : </h2>
+	<!-- create an ordered list -->
+	<ol id="myList"></ol>
+
+	<!-- create a table -->
+	<table id="myTable"></table>
+
+	<!-- create a drop-down menu -->
+	<select id="mySelect"></select>
+
+</body>
+
+</html>
